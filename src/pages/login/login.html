@@ -1,0 +1,73 @@
+<!-- -->
+<ion-content padding class="animated fadeIn login auth-page">
+  <div class="login-content">
+
+    <!-- Logo -->
+    <div padding-horizontal text-center class="animated fadeInDown">
+      <div class="logo"></div>
+      <h2 ion-text class="text-primary">
+        <strong>Libreta electrónica</strong> 
+      </h2>
+    </div>
+    <br> <br> 
+
+    <!-- Login form -->
+    <form class="list-form" (ngSubmit)="login()" [formGroup]="loginForm">
+        <ion-item [ngClass]="{ invalid: emailErrors.hasError('*', ['touched', 'dirty']) }">
+          <ion-label floating>
+                <ion-icon name="mail" item-start class="text-primary"></ion-icon> 
+                Email 
+            </ion-label>
+         <ion-input type="text"  formControlName="email"></ion-input>
+        </ion-item>
+
+        <!-- Si ocurre un error relacionado con el e-mail -->
+        <div ngxErrors="email" #emailErrors="ngxErrors">
+          <div [ngxError]="['email', 'required']" [when]="['touched', 'dirty']">Correo invalido</div>
+        </div> 
+
+
+
+        <ion-item [ngClass]="{ invalid: passwordErrors.hasError('*', ['touched']) }">
+          <ion-label floating>
+            <ion-icon name="lock" item-start class="text-primary"></ion-icon>
+            Contraseña
+          </ion-label>
+          <ion-input type="password" formControlName="password"></ion-input>
+        </ion-item>
+
+        <!-- Si ocurre un error relacionado con el pass -->
+        <div ngxErrors="password" #passwordErrors="ngxErrors">
+          <div [ngxError]="['minlength', 'required']" [when]="['touched']">Debe tener al menos 5 caracteres</div>
+        </div>
+    </form>
+    <br> 
+     
+    <div class="form-error">{{loginError}}</div>
+
+    <div>
+      <button ion-button icon-start block color="dark" tappable type="submit"  [disabled]="!loginForm.valid" (click)="login()">
+        <ion-icon name="log-in"></ion-icon>
+        INGRESAR
+      </button>
+
+
+    </div>
+
+     <div>
+        <button ion-button icon-left block clear (click)="loginWithGoogle()">
+          <ion-icon name="logo-google"></ion-icon>
+          INGRESAR CON GOOGLE
+        </button>
+      </div>
+
+   <p text-right ion-text color="secondary" tappable (click)="forgotPass()"><strong>Olvidó la contraseña?</strong></p>
+
+    <br>
+    <!-- Other links -->
+    <div text-center margin-top>
+      <span ion-text color="secondary" tappable (click)="register()">Eres nuevo? <strong>Crear cuenta</strong></span>
+    </div>
+
+  </div>
+</ion-content>
