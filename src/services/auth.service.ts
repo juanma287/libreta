@@ -13,11 +13,14 @@ export class AuthService {
 		});
 	}
 
+    // autenticamos al usuario con e-mail y pass
 	signInWithEmail(credentials) {
 		console.log('Sign in with email');
 		return this.afAuth.auth.signInWithEmailAndPassword(credentials.email, credentials.password);
 	}
 
+
+    // crear un nuevo usuaruio con e-mail y pass
 	signUp(credentials) {
 		return this.afAuth.auth.createUserWithEmailAndPassword(credentials.email,credentials.password);
 	}
@@ -36,12 +39,12 @@ export class AuthService {
 
 	signInWithGoogle() {
 		console.log('Sign in with google');
-		return this.oauthSignIn(new firebase.auth.GoogleAuthProvider());
+		return this.socialSignIn(new firebase.auth.GoogleAuthProvider());
 	}
 
 
     // Ver este modulo, COMENTE LO DEL TOKEN 
-	private oauthSignIn(provider: AuthProvider) {
+	private socialSignIn(provider: AuthProvider) {
 		if (!(<any>window).cordova) {
 			return this.afAuth.auth.signInWithPopup(provider);
 		} else {
@@ -50,12 +53,10 @@ export class AuthService {
 				return this.afAuth.auth.getRedirectResult().then( result => {
 					// This gives you a Google Access Token.
 					// You can use it to access the Google API.
-					
-
-      					//let token = result.credential.accessToken;
+					let token = result.credential.accessToken;
 					// The signed-in user info.
 					let user = result.user;
-				//	console.log(token, user);
+					console.log(token, user);
 				}).catch(function(error) {
 					// Handle Errors here.
 					alert(error.message);

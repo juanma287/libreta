@@ -48,13 +48,8 @@ export class LoginPage {
 
   // login 
   login() {
- console.log("asA");
-    let data = this.loginForm.value;
 
-    if (!data.email) {
-      return;
-    }
-
+   let data = this.loginForm.value;
    let credentials = {
       email: data.email,
       password: data.password
@@ -66,20 +61,24 @@ export class LoginPage {
        // AUTENTICACION
        this.auth.signInWithEmail(credentials)
       .then(() => this.nav.setRoot(HomePage),
-        error => this.loginError = "Datos incorrectos"
-       
+        error => this.loginError = "Datos de ingreso incorrectos"
       );
-
-       // finalizo loader
-          loader.dismiss()            
+      // finalizo loader
+      loader.dismiss()            
            
         });
            // luego del log enviamos al usuario a la home page
        // this.nav.setRoot(HomePage);
-    } // fin else
+    } 
 
- 
-
+  // ingresar con google
+  loginWithGoogle() {
+  this.auth.signInWithGoogle()
+    .then(
+      () => this.nav.setRoot(HomePage),
+      error => console.log(error.message)
+    );
+  }
 
 
 // resetar pass

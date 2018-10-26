@@ -13,34 +13,40 @@
 
 
     <!-- Login form -->
-    <form class="list-form">
-      <ion-item>
-        <ion-label floating>
-          <ion-icon name="person" item-start class="text-primary"></ion-icon>
-          Nombre
-        </ion-label>
-        <ion-input type="text" #username></ion-input>
-      </ion-item>
+    <form class="list-form"  [formGroup]="form">
+       <ion-item [ngClass]="{ invalid: emailErrors.hasError('*', ['touched', 'dirty']) }">
+          <ion-label floating>
+                <ion-icon name="mail" item-start class="text-primary"></ion-icon> 
+                Email 
+            </ion-label>
+         <ion-input type="text"  formControlName="email"></ion-input>
+        </ion-item>
 
-      <ion-item>
-        <ion-label floating>
-          <ion-icon name="mail" item-start class="text-primary"></ion-icon>
-          Email
-        </ion-label>
-        <ion-input type="email" #email></ion-input>
-      </ion-item>
+        <!-- Si ocurre un error relacionado con el e-mail -->
+        <div ngxErrors="email" class="error" #emailErrors="ngxErrors">
+          <div [ngxError]="['email', 'required']" [when]="['touched', 'dirty']">Correo inválido</div>
+        </div> 
 
-      <ion-item>
-        <ion-label floating>
-          <ion-icon name="lock" item-start class="text-primary"></ion-icon>
-          Password
-        </ion-label>
-        <ion-input type="password" #password></ion-input>
-      </ion-item>
+
+
+        <ion-item [ngClass]="{ invalid: passwordErrors.hasError('*', ['touched', 'dirty']) }">
+          <ion-label floating>
+            <ion-icon name="lock" item-start class="text-primary"></ion-icon>
+            Contraseña
+          </ion-label>
+          <ion-input type="password" formControlName="password"></ion-input>
+        </ion-item>
+
+        <!-- Si ocurre un error relacionado con el pass -->
+        <div ngxErrors="password" class="error" #passwordErrors="ngxErrors">
+          <div [ngxError]="['minlength', 'required']" [when]="['touched', 'dirty']">Debe tener al menos 6 caracteres</div>
+        </div>
+         
+          <div class="error">{{erroresRegistro}}</div>
     </form>
 
     <div margin-top>
-      <button ion-button block color="dark" tappable (click)="register()">
+      <button ion-button block color="dark" tappable type="submit"  (click)="register()">
         REGÍSTRATE
       </button>
 
