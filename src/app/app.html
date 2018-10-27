@@ -10,12 +10,16 @@
               </div>
           </ion-col>
           <ion-col padding-top col-8>
-            <h2 ion-text class="no-margin bold text-white">
-              João Firmino
-            </h2>
-            <span ion-text color="light">Customer</span>
+      
           </ion-col>
         </ion-row>
+
+         <ion-row>
+          <ion-col col-12>
+                    <span class="no-margin bold text-white" *ngIf="auth.getEmail()">{{auth.getEmail()}}</span>
+  
+               </ion-col>
+         </ion-row>
 
         <ion-row no-padding class="other-data">
           <ion-col no-padding class="column">

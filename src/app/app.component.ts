@@ -8,6 +8,7 @@ import { Keyboard } from '@ionic-native/keyboard';
 import { HomePage } from "../pages/home/home";
 import { LoginPage } from "../pages/login/login";
 import { LocalWeatherPage } from "../pages/local-weather/local-weather";
+import { AuthService } from '../services/auth.service';
 
 export interface MenuItem {
     title: string;
@@ -30,7 +31,8 @@ export class MyApp {
     public platform: Platform,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
-    public keyboard: Keyboard
+    public keyboard: Keyboard,
+    private auth: AuthService,
   ) {
     this.initializeApp();
 
@@ -41,7 +43,6 @@ export class MyApp {
   }
 
   initializeApp() {
-    console.log("as");
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
 
@@ -56,6 +57,22 @@ export class MyApp {
       //*** Control Keyboard
       this.keyboard.disableScroll(true);
     });
+
+    this.auth.afAuth.authState
+        .subscribe(
+          user => {
+            console.log(user);
+            if (user) {
+              this.rootPage = HomePage;
+            } else {
+              this.rootPage = LoginPage;
+            }
+          },
+          () => {
+
+            this.rootPage = LoginPage;
+          }
+        );
   }
 
   openPage(page) {
@@ -65,6 +82,7 @@ export class MyApp {
   }
 
   logout() {
+    this.auth.signOut();
     this.nav.setRoot(LoginPage);
   }
 

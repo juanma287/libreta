@@ -7,6 +7,7 @@ import AuthProvider = firebase.auth.AuthProvider;
 export class AuthService {
 	private user: firebase.User;
 
+
 	constructor(public afAuth: AngularFireAuth) {
 		afAuth.authState.subscribe(user => {
 			this.user = user;
@@ -33,11 +34,13 @@ export class AuthService {
 		return this.user && this.user.email;
 	}
 
+   
+
 	signOut(): Promise<void> {
 		return this.afAuth.auth.signOut();
 	}
 
-	signInWithGoogle() {
+	signInWithGoogle(): Promise<any> {
 		console.log('Sign in with google');
 		return this.socialSignIn(new firebase.auth.GoogleAuthProvider());
 	}
@@ -51,12 +54,7 @@ export class AuthService {
 			return this.afAuth.auth.signInWithRedirect(provider)
 			.then(() => {
 				return this.afAuth.auth.getRedirectResult().then( result => {
-					// This gives you a Google Access Token.
-					// You can use it to access the Google API.
-					let token = result.credential.accessToken;
-					// The signed-in user info.
-					let user = result.user;
-					console.log(token, user);
+				
 				}).catch(function(error) {
 					// Handle Errors here.
 					alert(error.message);

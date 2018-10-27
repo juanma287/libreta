@@ -48,6 +48,7 @@ export class RegisterPage {
           this.auth.signUp(credentials).then(
             () => this.navCtrl.setRoot(HomePage),
             error => this.erroresRegistro = "Datos incorrectos"
+            
           );
           // finalizo loader
           loader.dismiss()             

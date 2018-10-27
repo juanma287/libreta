@@ -74,9 +74,8 @@ export class LoginPage {
   // ingresar con google
   loginWithGoogle() {
   this.auth.signInWithGoogle()
-    .then(
-      () => this.nav.setRoot(HomePage),
-      error => console.log(error.message)
+    .then(() => this.nav.setRoot(HomePage),
+    error => this.loginError = "Datos de ingreso incorrectos"
     );
   }
 
