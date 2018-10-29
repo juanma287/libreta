@@ -64,18 +64,32 @@ export class LoginPage {
         error => this.loginError = "Datos de ingreso incorrectos"
       );
       // finalizo loader
-      loader.dismiss()            
-           
+      loader.dismiss()                     
         });
-           // luego del log enviamos al usuario a la home page
-       // this.nav.setRoot(HomePage);
     } 
 
-  // ingresar con google
+
+  // Ingresar con Google
   loginWithGoogle() {
   this.auth.signInWithGoogle()
     .then(() => this.nav.setRoot(HomePage),
-    error => this.loginError = "Datos de ingreso incorrectos"
+      error => console.log(error.message)
+    );
+  }
+
+  // Ingresar con Facebook
+  loginWithFacebook() {
+  this.auth.signInWithFacebook()
+    .then(() => this.nav.setRoot(HomePage),
+      error => console.log(error.message)
+    );
+  }
+
+  // Ingresar con Twitter
+  loginWithTwitter() {
+  this.auth.signInWithTwitter()
+    .then(() => this.nav.setRoot(HomePage),
+      error => console.log(error.message)
     );
   }
 

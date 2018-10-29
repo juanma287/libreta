@@ -1,5 +1,5 @@
-import {NgModule, ErrorHandler} from "@angular/core";
-import {IonicApp, IonicModule, IonicErrorHandler} from "ionic-angular";
+import {NgModule} from "@angular/core";
+import {IonicApp, IonicModule} from "ionic-angular";
 import {BrowserModule} from '@angular/platform-browser';
 import {IonicStorageModule} from '@ionic/storage';
 import { NgxErrorsModule } from '@ultimate/ngxerrors'
@@ -7,6 +7,7 @@ import { NgxErrorsModule } from '@ultimate/ngxerrors'
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {Keyboard} from '@ionic-native/keyboard';
+import { Facebook } from '@ionic-native/facebook'
 
 import {ActivityService} from "../services/activity-service";
 import {TripService} from "../services/trip-service";
@@ -86,6 +87,7 @@ export const firebaseConfig = {
     StatusBar,
     SplashScreen,
     Keyboard,
+    Facebook,
     ActivityService,
     TripService,
     WeatherProvider,

@@ -43,29 +43,42 @@
          
           <div class="error">{{loginError}}</div>
     </form>
-    <br> 
      
   
 
-    <div>
+    <div margin-top>
       <button ion-button icon-start block color="dark" tappable type="submit"   (click)="login()">
         <ion-icon name="log-in"></ion-icon>
         INGRESAR
       </button>
 
+         <p text-center ion-text color="secondary" style="margin-bottom: 0px; margin-top: 28px;">También podes ingresar con:</p>
 
+      <ion-grid>
+        <ion-row>
+          <ion-col col-4>
+            <button ion-button icon-only block class="btn-gplus" (click)="loginWithGoogle()">
+              <ion-icon name="logo-googleplus"></ion-icon>
+            </button>
+          </ion-col>
+          <ion-col col-4>
+            <button ion-button icon-only block class="btn-facebook"  (click)="loginWithFacebook()">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </button>
+          </ion-col>
+          <ion-col col-4>
+            <button ion-button icon-only block class="btn-twitter" (click)="loginWithTwitter()">
+              <ion-icon name="logo-twitter"></ion-icon>
+            </button>
+          </ion-col>   
+        </ion-row>
+      </ion-grid>
     </div>
+    
 
-     <div>
-        <button ion-button icon-left block clear (click)="loginWithGoogle()">
-          <ion-icon name="logo-google"></ion-icon>
-          INGRESAR CON GOOGLE
-        </button>
-      </div>
+
 
    <p text-right ion-text color="secondary" tappable (click)="forgotPass()"><strong>Olvidó la contraseña?</strong></p>
-
-    <br>
     <!-- Other links -->
     <div text-center margin-top>
       <span ion-text color="secondary" tappable (click)="register()">Eres nuevo? <strong>Crear cuenta</strong></span>
