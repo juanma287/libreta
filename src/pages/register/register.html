@@ -51,32 +51,33 @@
       </button>
 
 
-      <p text-center ion-text color="secondary">Or Sign Up with:</p>
+      <p text-center ion-text color="secondary" style="margin-bottom: 0px; margin-top: 28px;">O regístrate con:</p>
 
+      
       <ion-grid>
         <ion-row>
           <ion-col col-4>
-            <button ion-button icon-only block class="btn-facebook">
+            <button ion-button icon-only block class="btn-gplus" (click)="registerWithGoogle()">
+              <ion-icon name="logo-googleplus"></ion-icon>
+            </button>
+          </ion-col>
+          <ion-col col-4>
+            <button ion-button icon-only block class="btn-facebook"  (click)="registerWithFacebook()">
               <ion-icon name="logo-facebook"></ion-icon>
             </button>
           </ion-col>
           <ion-col col-4>
-            <button ion-button icon-only block class="btn-twitter">
+            <button ion-button icon-only block class="btn-twitter" (click)="registerWithTwitter()">
               <ion-icon name="logo-twitter"></ion-icon>
             </button>
-          </ion-col>
-          <ion-col col-4>
-            <button ion-button icon-only block class="btn-gplus">
-              <ion-icon name="logo-googleplus"></ion-icon>
-            </button>
-          </ion-col>
+          </ion-col>   
         </ion-row>
       </ion-grid>
     </div>
 
     <!-- Other links -->
     <div text-center margin-top>
-      <span ion-text color="primary" tappable (click)="login()">I have an account</span>
+      <span ion-text color="primary" tappable (click)="login()">Ya tengo una cuenta</span>
     </div>
 
   </div>

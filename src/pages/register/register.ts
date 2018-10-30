@@ -57,6 +57,34 @@ export class RegisterPage {
 }
 
 
+  // Ingresar con Google
+ registerWithGoogle() {
+  this.auth.signInWithGoogle()
+    .then(() => this.navCtrl.setRoot(HomePage),
+      error => console.log(error.message)
+    );
+  }
+
+  // Ingresar con Facebook
+ registerWithFacebook() {
+  this.auth.signInWithFacebook()
+    .then(() => this.navCtrl.setRoot(HomePage),
+      error => console.log(error.message)
+    );
+  }
+
+  // Ingresar con Twitter
+  registerWithTwitter() {
+      const alert = this.alertCtrl.create({
+          title: 'Registro Twitter',
+          subTitle: 'El registro por medio de twitter aún no se encuentra habilidato.',
+          buttons: ['OK']
+        });
+        alert.present();
+  }
+
+
+
  // vamos al login 
   login() {
     this.navCtrl.setRoot(LoginPage);

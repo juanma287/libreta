@@ -7,7 +7,6 @@ import { NgxErrorsModule } from '@ultimate/ngxerrors'
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {Keyboard} from '@ionic-native/keyboard';
-import { Facebook } from '@ionic-native/facebook'
 
 import {ActivityService} from "../services/activity-service";
 import {TripService} from "../services/trip-service";
@@ -87,7 +86,6 @@ export const firebaseConfig = {
     StatusBar,
     SplashScreen,
     Keyboard,
-    Facebook,
     ActivityService,
     TripService,
     WeatherProvider,

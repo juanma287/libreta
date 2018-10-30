@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import AuthProvider = firebase.auth.AuthProvider;
-import { Facebook } from '@ionic-native/facebook'
 
 
 @Injectable()
@@ -10,7 +9,7 @@ export class AuthService {
 	private user: firebase.User;
 
 
-	constructor(public afAuth: AngularFireAuth, public facebook: Facebook) {
+	constructor(public afAuth: AngularFireAuth) {
 		afAuth.authState.subscribe(user => {
 			this.user = user;
 		});
@@ -50,24 +49,10 @@ export class AuthService {
 
 	// Ingresar con Facebook
 	signInWithFacebook(): Promise<any> {
-		return this.facebook.login(['email'])
-    .then( response => {
-      const facebookCredential = firebase.auth.FacebookAuthProvider
-        .credential(response.authResponse.accessToken);
-
-      firebase.auth().signInWithCredential(facebookCredential)
-        .then( success => { 
-          console.log("Firebase success: " + JSON.stringify(success)); 
-        });
-
-    }).catch((error) => { console.log(error + "asd") });
+	console.log('Sign in with Facebook');
+		return this.socialSignIn(new firebase.auth.FacebookAuthProvider());
 	}
 
-    // Ingresar con Twitter
-	signInWithTwitter(): Promise<any> {
-		console.log('Sign in with Twitter');
-		return this.socialSignIn(new firebase.auth.TwitterAuthProvider());
-	}
 
 
     // Ver este modulo, COMENTE LO DEL TOKEN 
@@ -78,7 +63,7 @@ export class AuthService {
 			return this.afAuth.auth.signInWithRedirect(provider)
 			.then(() => {
 				return this.afAuth.auth.getRedirectResult().then( result => {
-				
+				 
 				}).catch(function(error) {
 					// Handle Errors here.
 					alert(error.message);

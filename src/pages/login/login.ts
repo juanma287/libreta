@@ -87,18 +87,20 @@ export class LoginPage {
 
   // Ingresar con Twitter
   loginWithTwitter() {
-  this.auth.signInWithTwitter()
-    .then(() => this.nav.setRoot(HomePage),
-      error => console.log(error.message)
-    );
+      const alert = this.alertCtrl.create({
+          title: 'Ingreso Twitter',
+          subTitle: 'El ingreso por medio de twitter aún no se encuentra habilidato.',
+          buttons: ['OK']
+        });
+        alert.present();
   }
 
 
 // resetar pass
  forgotPass() {
     let forgot = this.forgotCtrl.create({
-      title: 'Forgot Password?',
-      message: "Enter you email address to send a reset link password.",
+      title: 'Olvidó la contraseña?',
+      message: "Ingrese su dirección de correo para enviar un link de restablecimiento de contraseña.",
       inputs: [
         {
           name: 'email',
@@ -108,17 +110,15 @@ export class LoginPage {
       ],
       buttons: [
         {
-          text: 'Cancel',
+          text: 'Cancelar',
           handler: data => {
-            console.log('Cancel clicked');
           }
         },
         {
-          text: 'Send',
+          text: 'Enviar',
           handler: data => {
-            console.log('Send clicked');
             let toast = this.toastCtrl.create({
-              message: 'Email was sended successfully',
+              message: 'El correo fue enviado exitosamente',
               duration: 3000,
               position: 'top',
               cssClass: 'dark-trans',
