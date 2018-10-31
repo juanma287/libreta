@@ -15,6 +15,13 @@
   background-color: #FAFBFC;
 }
 
+.button-md {
+    border-radius: 50px !important;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    border-bottom-left-radius: 2px;
+    }
 .error{
        color: #FF0000;
        margin-top: 8px;
@@ -23,6 +30,7 @@
 .white-bg {
   background-color: #fff;
 }
+
 
 .detail-bg {
   background-color: #f1f1f5;

@@ -36,8 +36,9 @@ export class LoginPage {
       email: ['', Validators.compose([Validators.required, Validators.email])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(6)])]
     });
-  }
+    
 
+  }
 
   // MÉTODOS
 
@@ -99,8 +100,8 @@ export class LoginPage {
 // resetar pass
  forgotPass() {
     let forgot = this.forgotCtrl.create({
-      title: 'Olvidó la contraseña?',
-      message: "Ingrese su dirección de correo para enviar un link de restablecimiento de contraseña.",
+      title: '¿Olvidó la contraseña?',
+      message: "Ingrese su dirección de correo y enviaremos un link para restablecer la contraseña.",
       inputs: [
         {
           name: 'email',
@@ -117,6 +118,7 @@ export class LoginPage {
         {
           text: 'Enviar',
           handler: data => {
+            console.log(data);
             let toast = this.toastCtrl.create({
               message: 'El correo fue enviado exitosamente',
               duration: 3000,
