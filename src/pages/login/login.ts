@@ -2,6 +2,8 @@ import {Component} from "@angular/core";
 import {FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {NavController, AlertController, ToastController, MenuController, LoadingController} from "ionic-angular";
 import { AuthService } from '../../services/auth.service';
+import {Storage} from '@ionic/storage';
+
 
 import {HomePage} from "../home/home";
 import {RegisterPage} from "../register/register";
@@ -20,6 +22,7 @@ export class LoginPage {
  
 
   constructor(
+    private storage: Storage,
     public nav: NavController, 
     public forgotCtrl: AlertController,
     public alertCtrl: AlertController,
@@ -55,6 +58,8 @@ export class LoginPage {
       email: data.email,
       password: data.password
     };
+
+
 
    let loader = this.loading.create({  content: 'Pocesando, espere por favor…',  });
    loader.present().then(() => {
@@ -118,16 +123,44 @@ export class LoginPage {
         {
           text: 'Enviar',
           handler: data => {
-            console.log(data);
-            let toast = this.toastCtrl.create({
-              message: 'El correo fue enviado exitosamente',
-              duration: 3000,
-              position: 'top',
-              cssClass: 'dark-trans',
-              closeButtonText: 'OK',
-              showCloseButton: true
-            });
-            toast.present();
+      
+            // Enviamos  
+            this.auth.resetPassword(data.email).then(()  => {
+                 this.storage.get('emailEnviado').then((val) => {
+                 if(val)
+                 {
+                     let toast = this.toastCtrl.create({
+                            message: 'El correo fue enviado exitosamente',
+                            duration: 3000,
+                            position: 'top',
+                            cssClass: 'dark-trans',
+                            closeButtonText: 'OK',
+                            showCloseButton: true
+                          });
+                          toast.present();
+                 }
+                 else
+                 { 
+                           
+                   const alert = this.alertCtrl.create({
+                    title: 'Correo inválido',
+                    subTitle: 'Ingrese nuevamente su correo.',
+                      buttons: [
+                        {
+                          text: 'OK',
+                          handler: data => {
+                              this.forgotPass();
+                          }
+                        }]
+                    });
+                    alert.present();
+                 
+                 }
+               });
+             });
+          
+           
+     
           }
         }
       ]

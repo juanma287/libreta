@@ -61,7 +61,6 @@ export class MyApp {
     this.auth.afAuth.authState
         .subscribe(
           user => {
-            //console.log(user);
             if (user) {
               this.rootPage = HomePage;
             } else {

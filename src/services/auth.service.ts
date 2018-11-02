@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
+import {Storage} from '@ionic/storage';
 import * as firebase from 'firebase/app';
 import AuthProvider = firebase.auth.AuthProvider;
 
@@ -7,12 +8,13 @@ import AuthProvider = firebase.auth.AuthProvider;
 @Injectable()
 export class AuthService {
 	private user: firebase.User;
+    private photoURL: any;
 
-
-	constructor(public afAuth: AngularFireAuth) {
+	constructor(public afAuth: AngularFireAuth, private storage: Storage) {
 		afAuth.authState.subscribe(user => {
 			this.user = user;
 		});
+
 	}
 
     // autenticamos al usuario con e-mail y pass
@@ -36,7 +38,6 @@ export class AuthService {
 	}
 
    
-
 	signOut(): Promise<void> {
 		return this.afAuth.auth.signOut();
 	}
@@ -45,6 +46,7 @@ export class AuthService {
 	signInWithGoogle(): Promise<any> {
 		console.log('Sign in with google');
 		return this.socialSignIn(new firebase.auth.GoogleAuthProvider());
+
 	}
 
 	// Ingresar con Facebook
@@ -52,8 +54,13 @@ export class AuthService {
 	console.log('Sign in with Facebook');
 		return this.socialSignIn(new firebase.auth.FacebookAuthProvider());
 	}
-
-
+  
+    // Resetear pass
+    resetPassword(email: string) {
+    return this.afAuth.auth.sendPasswordResetEmail(email)
+      .then(() => this.storage.set('emailEnviado', true))
+      .catch((error) => this.storage.set('emailEnviado', false))
+  }
 
     // Ver este modulo, COMENTE LO DEL TOKEN 
 	private socialSignIn(provider: AuthProvider) {
