@@ -18,6 +18,10 @@ import {SettingsPage} from "../pages/settings/settings";
 import {CheckoutTripPage} from "../pages/checkout-trip/checkout-trip";
 import {HomePage} from "../pages/home/home";
 import {LoginPage} from "../pages/login/login";
+import {ComercioPage} from "../pages/gestion-comercio/comercio/comercio";
+import {AgregarComercioPage} from "../pages/gestion-comercio/agregar-comercio/agregar-comercio";
+import {EditarComercioPage} from "../pages/gestion-comercio/editar-comercio/editar-comercio";
+
 import {NotificationsPage} from "../pages/notifications/notifications";
 import {RegisterPage} from "../pages/register/register";
 import {SearchLocationPage} from "../pages/search-location/search-location";
@@ -28,7 +32,9 @@ import {LocalWeatherPage} from "../pages/local-weather/local-weather";
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+
 import { AuthService } from '../services/auth.service';
+import { ComercioService } from '../services/comercio.service';
 
 export const firebaseConfig = {
     apiKey: "AIzaSyD8Wj--z7_Xt05oaqZ6PMF29Gh_m4z77Lk",
@@ -46,6 +52,9 @@ export const firebaseConfig = {
     CheckoutTripPage,
     HomePage,
     LoginPage,
+    ComercioPage,
+    AgregarComercioPage,
+    EditarComercioPage,
     LocalWeatherPage,
     NotificationsPage,
     RegisterPage,
@@ -90,7 +99,8 @@ export const firebaseConfig = {
     TripService,
     WeatherProvider,
     AngularFireAuth,
-    AuthService
+    AuthService,
+    ComercioService
   ]
 })
 

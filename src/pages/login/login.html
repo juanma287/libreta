@@ -38,7 +38,7 @@
 
         <!-- Si ocurre un error relacionado con el pass -->
         <div ngxErrors="password" class="error" #passwordErrors="ngxErrors">
-          <div [ngxError]="['minlength', 'required']" [when]="['touched', 'dirty']">Debe tener al menos 6 caracteres</div>
+          <div [ngxError]="['minlength', 'required']" [when]="['touched', 'dirty']">Debe tener al menos 4 caracteres</div>
         </div>
          
           <div class="error">{{loginError}}</div>

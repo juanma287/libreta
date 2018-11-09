@@ -37,7 +37,7 @@ export class LoginPage {
     this.menu.swipeEnable(false);
     this.loginForm = fb.group({
       email: ['', Validators.compose([Validators.required, Validators.email])],
-      password: ['', Validators.compose([Validators.required, Validators.minLength(6)])]
+      password: ['', Validators.compose([Validators.required, Validators.minLength(4)])]
     });
     
 
@@ -58,8 +58,6 @@ export class LoginPage {
       email: data.email,
       password: data.password
     };
-
-
 
    let loader = this.loading.create({  content: 'Pocesando, espere por favor…',  });
    loader.present().then(() => {
